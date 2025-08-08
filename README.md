@@ -5,6 +5,7 @@ O projeto será desenvolvido utilizando React e Java, com arquitetura MVC. Utili
 
 ## Padrão de Branches
 secao-nomeDaFeature
+
 Ex:
 - WEBSITE-Navbar
 - PORTAL-NotasAlunos
@@ -12,6 +13,7 @@ Ex:
 
 ## Padrão de Mensagem para Commits
 Código da Atividade - Descrição breve das alterações realizadas no commit especifico
+
 Ex:
 - WEBSITE - Criação da navbar para o website de apresentação
 - PORTAL - Criação da tela de exibição de frequência dos alunos
