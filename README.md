@@ -19,3 +19,8 @@ Ex:
 - PORTAL - Criação da tela de exibição de frequência dos alunos
 - ADMIN - Criação da API para login e cadastro de novos usuários
 
+## Processo de CI
+
+## Ambiente de teste
+Vercel Preview
+
