@@ -20,6 +20,7 @@ Ex:
 - ADMIN - Criação da API para login e cadastro de novos usuários
 
 ## Processo de CI
+- Criação de testes automatizados que cubram pelo menos 70% do código;
 
 ## Ambiente de teste
 Vercel Preview
