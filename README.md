@@ -4,7 +4,7 @@ Este projeto consiste na criação de um sistema de gestão de notas, conteúdos
 O projeto será desenvolvido utilizando React e Java, com arquitetura MVC. Utilizaremos duas frentes de desenvolvimento paralelas: o portal do aluno e a tela de apresentação do Instituto, inicialmente separados em branches e posteriormente mesclados na Main.
 
 ## Padrão de Branches
-secao-nomeDaFeature
+SECAO-NomeDaFeature
 
 Ex:
 - WEBSITE-Navbar
