@@ -11,6 +11,8 @@ import Section from "../components/Section";
 import ContactForm from "../components/ContactForm";
 import Footer from "../components/Footer";
 
+import '../global.css';
+
 export default function Home() {
 
     // essa const cria um estado para guardar os dados das seção que virão da api
