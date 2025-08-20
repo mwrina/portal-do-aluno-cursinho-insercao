@@ -24,8 +24,8 @@ export default function Footer() {
                 <div className='links'>
                     <a className='link' href=''>Universidades em Joinville e Região</a>
                     <a className='link' href=''>Portal do Aluno</a>
-                    <a className='link' href=''>Matrícula</a>
-                    <a className='link' href=''>Cadatro de novo educador popular</a>
+                    <a className='link' href='/admin/register'>Matrícula</a>
+                    <a className='link' href='/admin/register'>Cadatro de novo educador popular</a>
                     <a className='link' href=''>Administração</a>
                 </div>
             </div>
