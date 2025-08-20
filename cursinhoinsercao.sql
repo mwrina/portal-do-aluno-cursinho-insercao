@@ -180,8 +180,8 @@ CREATE TABLE `tipo_usuario` (
 --
 
 INSERT INTO `tipo_usuario` (`id`, `tipo`) VALUES
-(1, 'professor'),
-(2, 'aluno');
+(1, 'Educador popular'),
+(2, 'Aluno');
 
 -- --------------------------------------------------------
 
