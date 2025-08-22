@@ -15,9 +15,10 @@ export default function Navbar() {
 
       {open && (
         <div className="dropdown-menu">
-          <a href="#home">Home</a>
-          <a href="#sobre">Sobre</a>
-          <a href="#contato">Contato</a>
+          <a href="/">Página Inicial</a>
+          <a href="#home">Portal do Aluno</a>
+          <a href="/admin/register">Matrícula</a>
+          <a href="/admin/register">Cadastro de Educador Popular</a>
         </div>
       )}
     </nav>

@@ -1,0 +1,54 @@
+.formCadastro {
+    margin: 2.5% 20% 2.5% 20%;
+    width: 60%;
+    padding: 5%;
+    line-height: 40px;
+    font-size: 20px;
+    border-radius: 30px;
+    background-color: #FDF5E0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.linCampo {
+    width: 100%;
+    height: 20%;
+    margin: 1% 0 1% 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.nomeCampo {
+    color: #E23467;
+    align-self: flex-start;
+}
+
+.campo {
+    width: 100%;
+    padding: 15px;
+    border: 3px solid #0DA9B8;
+    border-radius: 15px;
+    font-size: 18px;
+}
+
+select {
+   width: 100%;
+    padding: 15px;
+    border: 3px solid #0DA9B8;
+    border-radius: 15px;
+    appearance: none;
+    outline: none; 
+}
+
+.botao {
+    width: 35%;
+    min-height: 60px;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 30px;
+    margin: 5% 0 0 0;
+    border: none;
+    color: #FFFFFF;
+    background-color: #F2B924;
+}
