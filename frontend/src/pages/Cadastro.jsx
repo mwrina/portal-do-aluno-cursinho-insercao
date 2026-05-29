@@ -68,7 +68,7 @@ const FormInput = styled.input`
   border-radius: 0.5rem;
   font-size: 1rem;
   color: #111827;
-  
+
   &:focus {
     border-color: #f59e0b;
     box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.5);
@@ -102,7 +102,7 @@ const SubmitButton = styled.button`
   border-radius: 1rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   cursor: pointer;
-  
+
   &:disabled {
     background-color: #ccc;
   }
@@ -131,7 +131,7 @@ export default function Cadastro() {
     nome: '',
     email: '',
     senha: '',
-    tipo: 2 // Por defeito, o cadastro é de 'aluno'
+    tipo: 3
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
@@ -152,14 +152,11 @@ export default function Cadastro() {
     setLoading(true);
 
     try {
-      // O backend espera o campo 'ativo', que definimos como true por defeito
-      const dataToSend = { ...formData, ativo: true };
-      await api.post('/api/usuarios', dataToSend);
-      
+      await api.post('/api/usuarios', formData);
+
       setIsSuccess(true);
       setMessage('Cadastro realizado com sucesso! A redirecionar para o login...');
-      
-      // Espera 3 segundos antes de redirecionar para o usuário poder ler a mensagem
+
       setTimeout(() => {
         navigate('/admin');
       }, 3000);
@@ -180,7 +177,7 @@ export default function Cadastro() {
         <RegisterCard>
           <Title>Criar Conta</Title>
           <Form onSubmit={handleSubmit}>
-            
+
             <InputContainer>
               <Label htmlFor="nome">Nome Completo</Label>
               <FormInput type="text" id="nome" name="nome" value={formData.nome} onChange={handleChange} required />
@@ -193,31 +190,21 @@ export default function Cadastro() {
 
             <InputContainer>
               <Label htmlFor="senha">Senha</Label>
-              <FormInput type="password" id="senha" name="senha" value={formData.senha} onChange={handleChange} required />
+              <FormInput type="password" id="senha" name="senha" value={formData.senha} onChange={handleChange} required minLength={6} />
             </InputContainer>
 
             <InputContainer>
                 <Label htmlFor="tipo">Eu sou</Label>
                 <SelectInput id="tipo" name="tipo" value={formData.tipo} onChange={handleChange}>
-                    <option value={2}>Aluno</option>
-                    <option value={1}>Professor</option>
+                    <option value={3}>Aluno</option>
+                    <option value={2}>Professor</option>
                 </SelectInput>
             </InputContainer>
 
-            {formData.tipo === 1 && (
-                <InputContainer>
-                    <Label>Qual a sua área do conhecimento?</Label>
-                    <SelectInput id="areaConhecimento">
-                        <option>Ciências da Natureza e Suas Tecnologias</option>
-                        <option>Ciências Humanas e Suas Tecnologias</option>
-                        <option>linCampoguagens e Suas Tecnologias</option>
-                        <option>Matemática e Suas Tecnologias</option>
-                        <option>Redação</option>
-                    </SelectInput>
-                </InputContainer>
-            )}
-
-            <Botao text={loading ? 'A registrar...' : 'Registrar' } onClick={handleSubmit}/>
+            
+            <SubmitButton type="submit" disabled={loading}>
+              {loading ? 'A registrar...' : 'Registrar'}
+            </SubmitButton>
 
             {message && <Message success={isSuccess}>{message}</Message>}
           </Form>

@@ -2,7 +2,9 @@ package pt.cursinhoinsercao.portalaluno.resource;
 
 import pt.cursinhoinsercao.portalaluno.dto.Login;
 import pt.cursinhoinsercao.portalaluno.dto.LoginResponse;
+import pt.cursinhoinsercao.portalaluno.dto.UsuarioDTO;
 import pt.cursinhoinsercao.portalaluno.entity.Usuario;
+import pt.cursinhoinsercao.portalaluno.seguranca.AdminOnly;
 import pt.cursinhoinsercao.portalaluno.seguranca.Seguranca;
 import pt.cursinhoinsercao.portalaluno.service.UsuarioService;
 
@@ -15,8 +17,6 @@ import java.util.List;
 public class UsuarioResource {
 
     private UsuarioService usuarioService = new UsuarioService();
-
-    // Endpoints de Autenticação e Cadastro (Públicos)
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -44,13 +44,11 @@ public class UsuarioResource {
         }
     }
 
-    // novos endpoints para gestão de educadores
-
     @GET
     @Path("/professores/pendentes")
     @Produces(MediaType.APPLICATION_JSON)
-    @Seguranca // Apenas admins
-
+    @Seguranca
+    @AdminOnly
     public Response listarCandidaturasPendentes() {
         List<Usuario> candidaturas = usuarioService.listarCandidaturasPendentes();
         return Response.ok(candidaturas).build();
@@ -59,8 +57,8 @@ public class UsuarioResource {
     @GET
     @Path("/professores/ativos")
     @Produces(MediaType.APPLICATION_JSON)
-    @Seguranca // Apenas admins
-
+    @Seguranca
+    @AdminOnly
     public Response listarEducadoresAtivos() {
         List<Usuario> educadores = usuarioService.listarEducadoresAtivos();
         return Response.ok(educadores).build();
@@ -68,56 +66,72 @@ public class UsuarioResource {
 
     @PUT
     @Path("/{id}/aprovar")
-    @Seguranca // Apenas admins
+    @Seguranca
+    @AdminOnly
     public Response aprovarCandidatura(@PathParam("id") int id) {
         usuarioService.aprovarCandidatura(id);
         return Response.ok().build();
     }
 
-    // este endpoint pode ser usado tanto para rejeitar uma candidatura quanto para remover um educador ativo
     @DELETE
     @Path("/{id}")
-    @Seguranca // Apenas admins
+    @Seguranca
+    @AdminOnly
     public Response rejeitarOuRemoverEducador(@PathParam("id") int id) {
         usuarioService.rejeitarOuRemoverEducador(id);
         return Response.noContent().build();
     }
 
-    //Busca a lista de novas matrículas de alunos.
     @GET
     @Path("/alunos/pendentes")
     @Produces(MediaType.APPLICATION_JSON)
     @Seguranca
+    @AdminOnly
     public Response listarMatriculasPendentes() {
         List<Usuario> matriculas = usuarioService.listarMatriculasPendentes();
         return Response.ok(matriculas).build();
     }
 
-    //Busca a lista de alunos já matriculados
     @GET
     @Path("/alunos/matriculados")
     @Produces(MediaType.APPLICATION_JSON)
     @Seguranca
+    @AdminOnly
     public Response listarAlunosMatriculados() {
         List<Usuario> alunos = usuarioService.listarAlunosMatriculados();
         return Response.ok(alunos).build();
     }
 
-    //Aprova uma matrícula
     @PUT
     @Path("/alunos/{id}/aprovar")
     @Seguranca
+    @AdminOnly
     public Response aprovarMatricula(@PathParam("id") int id) {
         usuarioService.aprovarMatricula(id);
         return Response.ok().build();
     }
 
-    //Rejeita/Remove um aluno
     @DELETE
     @Path("/alunos/{id}")
     @Seguranca
+    @AdminOnly
     public Response rejeitarOuRemoverAluno(@PathParam("id") int id) {
         usuarioService.rejeitarOuRemoverAluno(id);
         return Response.noContent().build();
+    }
+
+    @PUT
+    @Path("/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Seguranca
+    @AdminOnly
+    public Response atualizarUsuario(@PathParam("id") int id, UsuarioDTO dto) {
+        try {
+            Usuario usuarioAtualizado = usuarioService.atualizar(id, dto);
+            return Response.ok(usuarioAtualizado).build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+        }
     }
 }

@@ -222,7 +222,10 @@ const DropdownGroup = ({ title, icon, children, isCollapsed }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <MenuGroup>
-      <GroupHeader className={isCollapsed ? 'collapsed' : ''} onClick={() => setIsOpen(!isOpen)}>
+      <GroupHeader
+        className={isCollapsed ? 'collapsed' : ''}
+        onClick={() => setIsOpen(!isOpen)}
+        title="Clique para expandir/recolher opções">
         <GroupTitle>{title}</GroupTitle>
         <ExpandIcon isOpen={isOpen}>▼</ExpandIcon>
         <IconDisplay>{icon}</IconDisplay>
@@ -271,6 +274,16 @@ export default function AdminSidebar({ isCollapsed, toggleSidebar }) {
     {
       id: 5, title: 'Relatório de Universidades', icon: '📊', submenu: [
         { title: 'Acessar Relatório', to: '/admin/relatorio-universidades' }
+      ]
+    },
+    {
+      id: 6, title: 'Criar Conta', icon: '👤', submenu: [
+        { title: 'Novo Usuário', to: '/admin/criar-conta' }
+      ]
+    },
+    {
+      id: 7, title: 'Gerir Usuários', icon: '👥', submenu: [
+        { title: 'Usuários Cadastrados', to: '/admin/usuarios' }
       ]
     }
   ];
